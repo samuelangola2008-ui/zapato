@@ -34,8 +34,8 @@
    ========================================================================= */
 
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
+  --primary: #e11d2a;
+  --primary-dark: #b8121d;
   --accent: #f59e0b;
   --charcoal: #0f172a;
   --charcoal-soft: #1e293b;
@@ -241,7 +241,7 @@ html.dark .navbar { background: rgba(11, 15, 25, 0.92); }
   white-space: nowrap;
 }
 .btn:hover { transform: translateY(-2px); }
-.btn-accent { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35); }
+.btn-accent { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; box-shadow: 0 10px 24px rgba(225, 29, 42, 0.35); }
 .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.7); }
 .btn-outline:hover { background: rgba(255,255,255,0.12); }
 .btn-dark { background: var(--charcoal); color: white; }
@@ -586,7 +586,6 @@ section { padding: 70px 0; }
 
     <div class="navbar">
       <a href="#inicio" class="brand">
-        <span class="brand-logo">👟</span>
         <span class="brand-name">Sneaker District <strong>Cali</strong></span>
       </a>
 
@@ -604,7 +603,7 @@ section { padding: 70px 0; }
 
       <div class="nav-actions">
         <button id="darkModeToggle" class="icon-btn" aria-label="Modo oscuro">🌙</button>
-        <a class="icon-btn" href="https://wa.me/573116775655" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+        <a class="icon-btn" href="https://wa.me/573116775655" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
         <button id="cartNavBtn" class="icon-btn cart-btn" aria-label="Ver canasta">
           🛍️ <span class="cart-badge js-cart-count">0</span>
         </button>
@@ -631,7 +630,7 @@ section { padding: 70px 0; }
         <p>Las zapatillas más deseadas del streetwear y el deporte. Tallas nacionales e importadas con entrega inmediata en Cali.</p>
         <div class="hero-actions">
           <button class="btn btn-accent btn-lg js-scroll-to" data-target="#catalogo">Ver Catálogo</button>
-          <a class="btn btn-outline btn-lg" href="https://wa.me/573116775655?text=Hola,%20quiero%20ver%20el%20catalogo%20de%20zapatillas" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+          <a class="btn btn-outline btn-lg" href="https://wa.me/573116775655?text=Hola,%20quiero%20ver%20el%20catalogo%20de%20zapatillas" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
         </div>
         <div class="hero-info-row">
           <div class="info-pill">
@@ -775,7 +774,7 @@ section { padding: 70px 0; }
       <div class="container cta-banner-inner">
         <h2>¿BUSCAS UN MODELO ESPECIAL?</h2>
         <p>Escríbenos directamente a nuestro WhatsApp oficial y consíguelo al mejor precio.</p>
-        <a class="btn btn-dark btn-lg" href="https://wa.me/573116775655?text=Hola,%20estoy%20buscando%20una%20referencia%20especial%20de%20zapatillas" target="_blank" rel="noopener">Escribir al 311 677 5655</a>
+        <a class="btn btn-dark btn-lg" href="https://wa.me/573116775655?text=Hola,%20estoy%20buscando%20una%20referencia%20especial%20de%20zapatillas" target="_blank" rel="noopener noreferrer">Escribir al 311 677 5655</a>
       </div>
     </section>
   </main>
@@ -786,14 +785,13 @@ section { padding: 70px 0; }
       <div class="footer-grid">
         <div class="footer-col">
           <div class="brand" style="margin-bottom: 12px;">
-            <span class="brand-logo">👟</span>
             <span class="brand-name" style="color:white;">Sneaker District <strong>Cali</strong></span>
           </div>
           <p>Tu tienda de confianza para zapatillas urbanas y deportivas con domicilios rápidos en Cali.</p>
           <div class="social-icons">
-            <a href="https://wa.me/573116775655" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+            <a href="https://wa.me/573116775655" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>
           </div>
         </div>
         <div class="footer-col" id="contacto">
@@ -1347,6 +1345,12 @@ section { padding: 70px 0; }
       document.querySelectorAll(".js-cart-count").forEach(el => el.textContent = totalCount);
     }
 
+    function escapeHtml(str) {
+      const div = document.createElement("div");
+      div.textContent = String(str ?? "");
+      return div.innerHTML;
+    }
+
     function renderCartItems() {
       const container = document.getElementById("cartItemsList");
       if (cart.length === 0) {
@@ -1358,12 +1362,12 @@ section { padding: 70px 0; }
 
       container.innerHTML = cart.map(item => `
         <div class="cart-item">
-          <img src="${item.image}" alt="${item.name}">
+          <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}">
           <div class="cart-item-info">
-            <h4>${item.name}</h4>
+            <h4>${escapeHtml(item.name)}</h4>
             <div class="cart-item-details">
-              Talla: <strong>${item.size}</strong><br>
-              ${item.comments ? 'Nota: ' + item.comments : ''}
+              Talla: <strong>${escapeHtml(item.size)}</strong><br>
+              ${item.comments ? 'Nota: ' + escapeHtml(item.comments) : ''}
             </div>
             <div class="cart-item-row">
               <div class="qty-controls">
@@ -1533,5 +1537,3 @@ section { padding: 70px 0; }
   </script>
 </body>
 </html>
-"""
-
