@@ -34,8 +34,8 @@
    ========================================================================= */
 
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
+  --primary: #e11d2a;
+  --primary-dark: #b8121d;
   --accent: #f59e0b;
   --charcoal: #0f172a;
   --charcoal-soft: #1e293b;
@@ -241,7 +241,7 @@ html.dark .navbar { background: rgba(11, 15, 25, 0.92); }
   white-space: nowrap;
 }
 .btn:hover { transform: translateY(-2px); }
-.btn-accent { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35); }
+.btn-accent { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; box-shadow: 0 10px 24px rgba(225, 29, 42, 0.35); }
 .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.7); }
 .btn-outline:hover { background: rgba(255,255,255,0.12); }
 .btn-dark { background: var(--charcoal); color: white; }
@@ -1537,4 +1537,4 @@ section { padding: 70px 0; }
   </script>
 </body>
 </html>
-"""
+
